@@ -21,8 +21,8 @@ lavender
 salmon
 chartreuse
 azure
-lime
 teal
+lime
 tan
 beige
 coral

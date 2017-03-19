@@ -25,11 +25,9 @@ public class Main {
 
         readInDictionary(noun, verb, adjective, colour, animal);
         Random rdm = new Random();
-
-
-        System.out.print(colour.get(rdm.nextInt(colour.size()))+ verb.get(rdm.nextInt(verb.size())) + adjective.get(rdm.nextInt(adjective.size())) + noun.get(rdm.nextInt(noun.size())));
-
-
+        String colourName = colour.get(rdm.nextInt(colour.size()));
+        String animalName = animal.get(rdm.nextInt(animal.size()));
+        System.out.println(colourName+animalName);
         /*
         <HUNTER>
         ID
@@ -88,14 +86,14 @@ public class Main {
         ID
         HunterID
         MissionHolderID
+        expReward
+        goldReward
         Deadline
         Start Time
-        type
-        ExpReward
-        goldRewad
         acceptTime
         CompletionTime
         ForfeitTime
+        Type
         MonsterID
          */
 
@@ -105,10 +103,9 @@ public class Main {
         itemID
         Difficulty
         Deadline
-        StartTime
-        Type
         ExpReward
         GoldReward
+        StartTime
         AcceptTime
         CompleteTime
         ForfeitTime
