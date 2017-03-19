@@ -13,6 +13,7 @@ public class Main {
     static String VERB = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\verbs\\1syllableverbs.txt";
     static String ADJ = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\adjectives\\1syllableadjectives.txt";
     static String COLOURS = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\colours\\colours.txt";
+    static String ANIMALS = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\animals\\Animal-words.txt";
 
     public static void main(String[] args) {
 
@@ -20,8 +21,9 @@ public class Main {
         ArrayList<String> verb = new ArrayList<>();
         ArrayList<String> adjective = new ArrayList<>();
         ArrayList<String> colour = new ArrayList<>();
+        ArrayList<String> animal = new ArrayList<>();
 
-        readInDictionary(noun, verb, adjective, colour);
+        readInDictionary(noun, verb, adjective, colour, animal);
         Random rdm = new Random();
 
 
@@ -114,12 +116,13 @@ public class Main {
 
     }
 
-    private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour) {
+    private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour, ArrayList animal) {
 
         Path nounFile = Paths.get(NOUN);
         Path verbFile = Paths.get(VERB);
         Path adjFile = Paths.get(ADJ);
         Path colourFile = Paths.get(COLOURS);
+        Path animalFile = Paths.get(ANIMALS);
 
         try(BufferedReader reader = Files.newBufferedReader(nounFile)) {
             String line = null;
@@ -145,10 +148,16 @@ public class Main {
                 line = line.substring(0,1).toUpperCase()+line.substring(1).toLowerCase();
                 colour.add(line);
             }
+            BufferedReader reader4 = Files.newBufferedReader(animalFile);
+            line = null;
+            while ((line = reader4.readLine()) != null) {
+                animal.add(line);
+            }
             reader.close();
             reader1.close();
             reader2.close();
             reader3.close();
+            reader4.close();
         }
         catch (Exception e)
         {
