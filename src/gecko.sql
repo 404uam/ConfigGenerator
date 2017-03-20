@@ -1,3 +1,30 @@
+CREATE TABLE Team(
+  teamName VARCHAR(26),
+  teamRank INTEGER,
+  hunterID INTEGER NOT NULL,
+  PRIMARY KEY(teamName),
+  FOREIGN KEY(hunterID) REFERENCES
+    Team_Captain(hunterID));
+
+CREATE TABLE Hunter(
+  hunterID INTEGER,
+  name VARCHAR(26),
+  age INTEGER,
+  gender CHAR(1),
+  experience INTEGER,
+  goldBalance INTEGER,
+  teamName VARCHAR(26),
+  PRIMARY KEY(hunterID,name),
+  FOREIGN KEY(teamName)
+  REFERENCES Team(teamName));
+
+CREATE TABLE Team_Captain(
+  hunterID INTEGER,
+  teamName VARCHAR(26) NOT NULL,
+  PRIMARY KEY(hunterID),
+  FOREIGN KEY(teamName) REFERENCES Team(teamName),
+  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
+
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
             hunterID INTEGER,
@@ -14,7 +41,7 @@ CREATE TABLE Hunting_missions(
 			PRIMARY KEY (huntingMissionID),
 			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
 			FOREIGN KEY(monsterID) REFERENCES Monster(monsterID),
-            FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
+      FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Hunting_missions_difficulty(
             difficulty INTEGER,
@@ -88,18 +115,6 @@ CREATE TABLE MissionHolder_reputation(
             reputation INTEGER,
             PRIMARY KEY(goldBalance));
 
-CREATE TABLE Hunter(
-            hunterID INTEGER, 
-            name VARCHAR(26), 
-            age INTEGER, 
-            gender CHAR(1), 
-            experience INTEGER, 
-            goldBalance INTEGER, 
-            teamName VARCHAR(26),
-			PRIMARY KEY(hunterID,name),
-			FOREIGN KEY(teamName) 
-            REFERENCES Team(teamName));
-
 CREATE TABLE Hunter_experience(
             experience INTEGER,
             hunterLevel INTEGER,
@@ -114,17 +129,3 @@ CREATE TABLE Monster(
             domesticated BOOLEAN,
 			PRIMARY KEY(monsterID,name));
 
-CREATE TABLE Team_Captain(
-            hunterID INTEGER, 
-            teamName VARCHAR(26),NOT NULL
-			PRIMARY KEY(hunterID),
-			FOREIGN KEY(teamName) REFERENCES Team(teamName),
-			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
-
-CREATE TABLE Team( 
-            teamName VARCHAR(26), 
-            teamRank INTEGER, 
-            hunterID INTEGER,NOT NULL
-			PRIMARY KEY(teamName),
-			FOREIGN KEY(hunterID) REFERENCES 
-            Team_Captain(hunterID));
