@@ -77,7 +77,7 @@ CREATE TABLE Item_Foraging_Mission(
 			FOREIGN KEY(itemID) REFERENCES Item(itemID),
             FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
-CREATE TABLE Item_Foraging_Mission_difficulty(
+CREATE TABLE Item_Mission_Difficulty(
             difficulty INTEGER, 
             expReward INTEGER, 
             goldReward INTEGER,
