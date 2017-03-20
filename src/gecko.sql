@@ -24,6 +24,18 @@ CREATE TABLE Team_Captain(
   PRIMARY KEY(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName),
   FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
+  
+  CREATE TABLE Item(
+            itemID INTEGER, 
+            hunterID INTEGER, 
+            missionID INTEGER,
+            itemName CHAR(26), 
+            itemRank INTEGER, 
+            rarity INTEGER, 
+            itemValue INTEGER,
+            PRIMARY KEY(itemID),
+            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
+            FOREIGN KEY(missionID) REFERENCES Item_Foraging_Mission(missionID));
 
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
@@ -85,18 +97,6 @@ CREATE TABLE IMission_has_Item(
 			FOREIGN KEY(itemMissionId) REFERENCES Item_Foraging_Mission(itemMissionId),
 			FOREIGN KEY(ItemId) REFERENCES Item(itemId));
             
-CREATE TABLE Item(
-            itemID INTEGER, 
-            hunterID INTEGER, 
-            missionID INTEGER,
-            itemName CHAR(26), 
-            itemRank INTEGER, 
-            rarity INTEGER, 
-            itemValue INTEGER,
-            PRIMARY KEY(itemID),
-            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID)
-            FOREIGN KEY(missionID) REFERENCES Item_Foraging_Mission(missionID));
-
 CREATE TABLE Item_Name(
             itemName VARCHAR(26), 
             description VARCHAR(512),
@@ -126,6 +126,6 @@ CREATE TABLE Monster(
             location CHAR(26), 
             ferocity INTEGER, 
             remaining INTEGER, 
-            domesticated BOOLEAN,
+            domesticated CHAR(1),
 			PRIMARY KEY(monsterID,name));
 
