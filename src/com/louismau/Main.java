@@ -34,6 +34,10 @@ public class Main {
             generateHunter(adjective, noun);
         }
         System.out.println("####################");
+        for (int i = 0; i < 7; i++)
+        {
+            generateMH(adjective, noun);
+        }
 
         /*
         <MONSTER>
@@ -43,15 +47,6 @@ public class Main {
         Ferocity
         Remaining
         Domesticated
-         */
-
-        /*
-        <Mission Holder>
-        ID
-        Age
-        Name
-        Reputation
-        Balance
          */
 
         /*
@@ -187,6 +182,29 @@ public class Main {
 
 
         System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +")");
+    }
+
+        /*
+        <Mission Holder>
+        ID
+        Age
+        Name
+        Reputation
+        Balance
+         */
+    private static void generateMH(ArrayList<String> adj, ArrayList<String> noun)
+    {
+        Random rdm = new Random();
+        int id = rdm.nextInt(250);
+        String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
+        int age = rdm.nextInt(100);
+        int rep = rdm.nextInt(1000);
+        int gold = rdm.nextInt(10000000);
+
+
+        System.out.println("("+ id + "," + age + "," + name + "," + rep + "," + gold +")");
+
+
     }
 
 }
