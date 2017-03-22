@@ -1,11 +1,9 @@
-CREATE TABLE Team(
+  CREATE TABLE Team(
   teamName VARCHAR(26),
   teamRank INTEGER,
   hunterID INTEGER NOT NULL,
-  PRIMARY KEY(teamName),
-  FOREIGN KEY(hunterID) REFERENCES
-    Team_Captain(hunterID));
-
+  PRIMARY KEY(teamName));
+  
 CREATE TABLE Hunter(
   hunterID INTEGER,
   name VARCHAR(26),
@@ -22,20 +20,19 @@ CREATE TABLE Team_Captain(
   hunterID INTEGER,
   teamName VARCHAR(26) NOT NULL,
   PRIMARY KEY(hunterID),
-  FOREIGN KEY(teamName) REFERENCES Team(teamName),
-  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
+  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID)
+  FOREIGN KEY(teamName) REFERENCES Team(teamName));
   
   CREATE TABLE Item(
             itemID INTEGER, 
             hunterID INTEGER, 
             missionID INTEGER,
             itemName CHAR(26), 
-            itemRank INTEGER, 
+            itemRank CHAR(1), 
             rarity INTEGER, 
             itemValue INTEGER,
             PRIMARY KEY(itemID),
-            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-            FOREIGN KEY(missionID) REFERENCES Item_Foraging_Mission(missionID));
+            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
 
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,

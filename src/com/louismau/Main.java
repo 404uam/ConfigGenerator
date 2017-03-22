@@ -31,12 +31,12 @@ public class Main {
 
         System.out.println("####################");
         for(int i = 0; i < 10; i++) {
-            generateHunter(adjective, noun);
+            generateHunter(adjective, animal);
         }
         System.out.println("####################");
         for (int i = 0; i < 7; i++)
         {
-            generateMH(adjective, noun);
+            generateMH(i,adjective, noun);
         }
 
         /*
@@ -192,10 +192,10 @@ public class Main {
         Reputation
         Balance
          */
-    private static void generateMH(ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateMH(int id, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(250);
+        int d = rdm.nextInt(250);
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
         int age = rdm.nextInt(100);
         int rep = rdm.nextInt(1000);
