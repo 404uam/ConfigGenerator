@@ -20,7 +20,7 @@ CREATE TABLE Team_Captain(
   hunterID INTEGER,
   teamName VARCHAR(26) NOT NULL,
   PRIMARY KEY(hunterID),
-  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID)
+  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
   
   CREATE TABLE Item(
