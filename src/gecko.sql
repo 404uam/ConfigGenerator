@@ -77,6 +77,7 @@ CREATE TABLE Hunting_missions_difficulty(
 CREATE TABLE Item_Foraging_Mission(
             itemMissionId INTEGER,
             hunterID INTEGER,
+            missionHolderID INTEGER,
             itemID INTEGER,
             difficulty INTEGER, 
             deadline INTEGER, 
