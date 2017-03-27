@@ -15,6 +15,15 @@ CREATE TABLE Hunter(
   PRIMARY KEY(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
 
+  CREATE TABLE Monster(
+    monsterID INTEGER,
+    name VARCHAR(30),
+    location CHAR(26),
+    ferocity INTEGER,
+    remaining INTEGER,
+    domesticated CHAR(1),
+    PRIMARY KEY(monsterID,name));
+
 CREATE TABLE Team_Captain(
   hunterID INTEGER,
   name VARCHAR(26),
@@ -116,13 +125,4 @@ CREATE TABLE Hunter_experience(
             experience INTEGER,
             hunterLevel INTEGER,
 			PRIMARY KEY(experience));
-
-CREATE TABLE Monster(
-            monsterID INTEGER, 
-            name VARCHAR(30), 
-            location CHAR(26), 
-            ferocity INTEGER, 
-            remaining INTEGER, 
-            domesticated CHAR(1),
-			PRIMARY KEY(monsterID,name));
 
