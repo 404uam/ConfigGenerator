@@ -13,8 +13,7 @@ CREATE TABLE Hunter(
   goldBalance INTEGER,
   teamName VARCHAR(26),
   PRIMARY KEY(hunterID,name),
-  FOREIGN KEY(teamName)
-  REFERENCES Team(teamName));
+  FOREIGN KEY(teamName) REFERENCES Team(teamName));
 
 CREATE TABLE Team_Captain(
   hunterID INTEGER,
