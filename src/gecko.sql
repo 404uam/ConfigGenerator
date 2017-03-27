@@ -67,8 +67,9 @@ CREATE TABLE Hunting_missions_difficulty(
 			PRIMARY KEY (difficulty));
 
 CREATE TABLE Item_Foraging_Mission(
-            itemMissionId INTEGER, 
-            itemID INTEGER, 
+            itemMissionId INTEGER,
+            hunterID INTEGER,
+            itemID INTEGER,
             difficulty INTEGER, 
             deadline INTEGER, 
             expReward INTEGER, 
