@@ -26,7 +26,6 @@ CREATE TABLE Hunter(
 
 CREATE TABLE Team_Captain(
   hunterID INTEGER,
-  name VARCHAR(26),
   teamName VARCHAR(26) NOT NULL,
   PRIMARY KEY(hunterID),
   FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
