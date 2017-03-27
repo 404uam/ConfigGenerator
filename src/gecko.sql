@@ -22,7 +22,7 @@ CREATE TABLE Hunter(
     ferocity INTEGER,
     remaining INTEGER,
     domesticated CHAR(1),
-    PRIMARY KEY(monsterID,name));
+    PRIMARY KEY(monsterID));
 
 CREATE TABLE Team_Captain(
   hunterID INTEGER,

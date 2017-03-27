@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,6 +24,15 @@ public class Main {
         ArrayList<String> colour = new ArrayList<>();
         ArrayList<String> animal = new ArrayList<>();
 
+        //DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+       try {
+           Class.forName("oracle.jdbc.driver.OracleDriver");
+       }
+       catch (Exception e)
+       {
+           e.printStackTrace();
+           System.out.print("Class not found\n");
+       }
         readInDictionary(noun, verb, adjective, colour, animal);
         Random rdm = new Random();
         String colourName = colour.get(rdm.nextInt(colour.size()));
