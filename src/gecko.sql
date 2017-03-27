@@ -12,7 +12,7 @@ CREATE TABLE Hunter(
   experience INTEGER,
   goldBalance INTEGER,
   teamName VARCHAR(26),
-  PRIMARY KEY(hunterID,name),
+  PRIMARY KEY(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
 
 CREATE TABLE Team_Captain(
@@ -21,7 +21,6 @@ CREATE TABLE Team_Captain(
   teamName VARCHAR(26) NOT NULL,
   PRIMARY KEY(hunterID),
   FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-  FOREIGN KEY(name) REFERENCES Hunter(name),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
   
   CREATE TABLE Item(
