@@ -30,6 +30,14 @@ CREATE TABLE Team_Captain(
   PRIMARY KEY(hunterID),
   FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
+
+  CREATE TABLE MissionHolder(
+            missionHolderID INTEGER,
+            age INTEGER,
+            name VARCHAR(26),
+            reputation INTEGER,
+            goldBalance INTEGER,
+			PRIMARY KEY(missionHolderID));
   
   CREATE TABLE Item(
             itemID INTEGER, 
@@ -107,14 +115,6 @@ CREATE TABLE Item_Name(
             itemName VARCHAR(26), 
             description VARCHAR(512),
 			PRIMARY KEY(itemName));
-
-CREATE TABLE MissionHolder(
-            missionHolderID INTEGER,
-            age INTEGER, 
-            name VARCHAR(26),
-            reputation INTEGER, 
-            goldBalance INTEGER, 
-			PRIMARY KEY(missionHolderID));
 
 CREATE TABLE MissionHolder_reputation(
             goldBalance INTEGER, 
