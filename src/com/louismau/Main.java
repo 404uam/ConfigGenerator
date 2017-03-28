@@ -24,15 +24,6 @@ public class Main {
         ArrayList<String> colour = new ArrayList<>();
         ArrayList<String> animal = new ArrayList<>();
 
-        //DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-       try {
-           Class.forName("oracle.jdbc.driver.OracleDriver");
-       }
-       catch (Exception e)
-       {
-           e.printStackTrace();
-           System.out.print("Class not found\n");
-       }
         readInDictionary(noun, verb, adjective, colour, animal);
         Random rdm = new Random();
         String colourName = colour.get(rdm.nextInt(colour.size()));
@@ -255,15 +246,23 @@ public class Main {
     /*
         <ITEM>
         ID
-        Name
         HunterID
         MissionID
+        Name
         Rank
         Rarity
         Value
          */
-    private static void generateItem()
+    private static void generateItem(int hunterID, ArrayList<String> colour, ArrayList<String> noun)
     {
+        Random rdm = new Random();
+        int id = rdm.nextInt(100);
+        int hID = hunterID;
+        int mID;
+        String name = colour.get(rdm.nextInt(colour.size())) + noun.get(rdm.nextInt(noun.size()));
+        String[] rank = {"D","E","C","B","A","S"};
+        String itemRank = rank[rdm.nextInt(rank.length)];
+
 
     }
 
