@@ -1,10 +1,8 @@
 package com.louismau;
 import java.io.BufferedReader;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -136,6 +134,7 @@ public class Main {
             while ((line = reader4.readLine()) != null) {
                 animal.add(line);
             }
+
             reader.close();
             reader1.close();
             reader2.close();
