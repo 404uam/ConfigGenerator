@@ -48,17 +48,11 @@ public class Main {
         {
             generateMH(i,adjective, noun);
         }
-
-        /*
-        <MONSTER>
-        ID
-        Name
-        Location
-        Ferocity
-        Remaining
-        Domesticated
-         */
-
+        System.out.println("####################");
+        for (int i = 0; i < 7; i++)
+        {
+            generateMonster(colour,adjective,animal);
+        }
         /*
         <ITEM>
         ID
@@ -216,5 +210,62 @@ public class Main {
 
 
     }
+        /*
+        <TEAM>
+        Name
+        Rank
+        HunterID
+         */
+    private static void generateTeam(int id, ArrayList<String> adj, ArrayList<String> noun)
+    {
+        Random rdm = new Random();
+        String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
+        int rank = rdm.nextInt(100);
+        int hunterID = id;
+
+        System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
+    }
+        /*
+        <MONSTER>
+        ID
+        Name
+        Location
+        Ferocity
+        Remaining
+        Domesticated
+         */
+        private  static void generateMonster(ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
+        {
+            Random rdm = new Random();
+            int id = rdm.nextInt(100);
+            String name = colour.get(rdm.nextInt(colour.size())) + adj.get(rdm.nextInt(adj.size())) + animal.get(rdm.nextInt(animal.size()));
+            String location = adj.get(rdm.nextInt(adj.size())) + colour.get(rdm.nextInt(colour.size()));
+            int ferocity = rdm.nextInt(150);
+            int remaining = 100;
+            char domesticated;
+            if(rdm.nextInt()%2 == 0)
+            {
+                domesticated = 'T';
+            }
+            else
+                domesticated = 'F';
+
+            System.out.println("("+id+","+name+","+location+","+ferocity+","+remaining+","+domesticated+")");
+        }
+    /*
+        <ITEM>
+        ID
+        Name
+        HunterID
+        MissionID
+        Rank
+        Rarity
+        Value
+         */
+    private static void generateItem()
+    {
+
+    }
 
 }
+
