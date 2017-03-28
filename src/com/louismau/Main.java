@@ -47,20 +47,6 @@ public class Main {
         }
 
 
-        /*
-        <Item Foraging Mission>
-        ID
-        itemID
-        Difficulty
-        Deadline
-        ExpReward
-        GoldReward
-        StartTime
-        AcceptTime
-        CompleteTime
-        ForfeitTime
-         */
-
     }
 
     private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour, ArrayList animal, ArrayList desc) {
@@ -280,6 +266,7 @@ public class Main {
         MissionHolderID
         expReward
         goldReward
+        description
         Deadline
         Start Time
         acceptTime
@@ -288,7 +275,7 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission()
+    private static void generateHuntingMission(ArrayList<String> desc)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
@@ -296,6 +283,51 @@ public class Main {
         int missionHolderID;
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
+        String description = desc.get(rdm.nextInt(desc.size()));
+        String deadline;
+        String missionType;
+        int monsterID;
+    }
+    private static void generateHuntingDifficulty(int gold, int exp)
+    {
+        Random rdm = new Random();
+        String[] rank = {"D","E","C","B","A","S"};
+        String difficulty;
+        int determine = (gold + exp)/2;
+
+        if (determine >= 500000)
+        {
+            difficulty = "S";
+        }
+        else if (determine > 200000)
+        {
+            if(determine % 2 == 0)
+            {
+                difficulty = "S";
+            }
+            else
+                difficulty = "A";
+        }
+        else
+            difficulty = rank[rdm.nextInt(rank.length-1)];
+
+    }
+
+        /*
+        <Item Foraging Mission>
+        ID
+        itemID
+        Difficulty
+        Deadline
+        ExpReward
+        GoldReward
+        StartTime
+        AcceptTime
+        CompleteTime
+        ForfeitTime
+         */
+    private static void generateItemMission()
+    {
 
     }
 
