@@ -13,6 +13,7 @@ public class Main {
     static String ADJ = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\adjectives\\1syllableadjectives.txt";
     static String COLOURS = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\colours\\colours.txt";
     static String ANIMALS = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\animals\\Animal-words.txt";
+    static String DESC = "C:\\Users\\Louis\\Documents\\ConfigGenerator\\src\\description.txt";
 
     public static void main(String[] args) {
 
@@ -21,8 +22,9 @@ public class Main {
         ArrayList<String> adjective = new ArrayList<>();
         ArrayList<String> colour = new ArrayList<>();
         ArrayList<String> animal = new ArrayList<>();
+        ArrayList<String> descriptions = new ArrayList<>();
 
-        readInDictionary(noun, verb, adjective, colour, animal);
+        readInDictionary(noun, verb, adjective, colour, animal, descriptions);
         Random rdm = new Random();
         String colourName = colour.get(rdm.nextInt(colour.size()));
         String animalName = animal.get(rdm.nextInt(animal.size()));
@@ -97,13 +99,14 @@ public class Main {
 
     }
 
-    private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour, ArrayList animal) {
+    private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour, ArrayList animal, ArrayList desc) {
 
         Path nounFile = Paths.get(NOUN);
         Path verbFile = Paths.get(VERB);
         Path adjFile = Paths.get(ADJ);
         Path colourFile = Paths.get(COLOURS);
         Path animalFile = Paths.get(ANIMALS);
+        Path descFile = Paths.get(DESC);
 
         try(BufferedReader reader = Files.newBufferedReader(nounFile)) {
             String line = null;
@@ -134,12 +137,18 @@ public class Main {
             while ((line = reader4.readLine()) != null) {
                 animal.add(line);
             }
+            BufferedReader reader5 = Files.newBufferedReader(descFile);
+            line = null;
+            while ((line = reader5.readLine()) != null){
+                desc.add(line);
+            }
 
             reader.close();
             reader1.close();
             reader2.close();
             reader3.close();
             reader4.close();
+            reader5.close();
         }
         catch (Exception e)
         {
