@@ -344,8 +344,8 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
         String deadline;
         String missionType;
-        int monsterID;
     }
+
 
 
 }
