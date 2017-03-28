@@ -1,6 +1,6 @@
   CREATE TABLE Team(
   teamName VARCHAR(26),
-  teamRank INTEGER,
+  teamRank CHAR(1),
   hunterID INTEGER NOT NULL,
   PRIMARY KEY(teamName));
   
@@ -53,7 +53,7 @@ CREATE TABLE Team_Captain(
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
             hunterID INTEGER,
-            missionHolderID INTEGER,
+            missionHolderID INTEGER NOT NULL,
             expReward INTEGER,
             goldReward INTEGER,
             deadline CHAR(20), 
