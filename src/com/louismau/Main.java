@@ -49,7 +49,7 @@ public class Main {
 
     }
 
-    private static void readInDictionary(ArrayList noun, ArrayList verb, ArrayList adjective, ArrayList colour, ArrayList animal, ArrayList desc) {
+    private static void readInDictionary(ArrayList<String> noun, ArrayList<String> verb, ArrayList<String> adjective, ArrayList<String> colour, ArrayList<String> animal, ArrayList<String> desc) {
 
         Path nounFile = Paths.get(NOUN);
         Path verbFile = Paths.get(VERB);
@@ -59,7 +59,7 @@ public class Main {
         Path descFile = Paths.get(DESC);
 
         try(BufferedReader reader = Files.newBufferedReader(nounFile)) {
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 line = line.substring(0,1).toUpperCase()+line.substring(1).toLowerCase();
                noun.add(line);
@@ -133,7 +133,6 @@ public class Main {
         int exp = rdm.nextInt(1000);
         int gold = rdm.nextInt(1000000);
 
-
         System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +")");
     }
 
@@ -154,10 +153,31 @@ public class Main {
         int rep = rdm.nextInt(1000);
         int gold = rdm.nextInt(10000000);
 
-
         System.out.println("("+ id + "," + age + "," + name + "," + rep + "," + gold +")");
+    }
+    private static void generateMHReputation(int gold)
+    {
+        String reputation;
+       if (gold >= 500000)
+       {
+           reputation = "S";
+       }
+       else if(gold >= 235000)
+       {
+           reputation = "A";
+       }
+       else if(gold >= 150000)
+       {
+           reputation = "B";
+       }
+       else if (gold >= 50000)
+       {
+           reputation = "C";
+       }
+       else
+           reputation = "D";
 
-
+       System.out.println("(" +gold+","+reputation+ ")");
     }
         /*
         <TEAM>
@@ -344,6 +364,11 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
         String deadline;
         String missionType;
+    }
+
+    private static void generateItemDifficulty(int gold, int exp)
+    {
+        generateHuntingDifficulty(gold,exp);
     }
 
 
