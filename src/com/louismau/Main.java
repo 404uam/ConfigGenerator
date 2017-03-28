@@ -1,8 +1,10 @@
 package com.louismau;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.rmi.server.ExportException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
@@ -25,26 +27,16 @@ public class Main {
         ArrayList<String> animal = new ArrayList<>();
         ArrayList<String> descriptions = new ArrayList<>();
 
-        readInDictionary(noun, verb, adjective, colour, animal, descriptions);
-        Random rdm = new Random();
-        String colourName = colour.get(rdm.nextInt(colour.size()));
-        String animalName = animal.get(rdm.nextInt(animal.size()));
-        System.out.println(colourName+animalName);
+        Path sqlFile = Paths.get("./insert.sql");
 
-        System.out.println("####################");
-        for(int i = 0; i < 10; i++) {
-            generateHunter(adjective, animal);
-            generateItem(i,descriptions,colour,noun);
+        try {
+            BufferedWriter bw = Files.newBufferedWriter(sqlFile);
         }
-        System.out.println("####################");
-        for (int i = 0; i < 7; i++)
+        catch(Exception e)
         {
-            generateMH(i,adjective, noun);
+            e.printStackTrace();
         }
-        System.out.println("####################");
-        for (int i = 0; i < 7; i++) {
-            generateMonster(colour, adjective, animal);
-        }
+        readInDictionary(noun, verb, adjective, colour, animal, descriptions);
 
 
     }
