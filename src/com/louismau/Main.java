@@ -320,6 +320,8 @@ public class Main {
         /*
         <Item Foraging Mission>
         ID
+        hunterID
+        MissionHolder ID
         itemID
         Deadline
         Description
@@ -330,9 +332,19 @@ public class Main {
         CompleteTime
         ForfeitTime
          */
-    private static void generateItemMission()
+    private static void generateItemMission(int iID, int mhID,ArrayList<String> desc)
     {
-
+        Random rdm = new Random();
+        int id = rdm.nextInt(1000);
+        int hunterID;
+        int missionHolderID;
+        int itemID;
+        int expReward = rdm.nextInt(1000000);
+        int goldReward = rdm.nextInt(600000);
+        String description = desc.get(rdm.nextInt(desc.size()));
+        String deadline;
+        String missionType;
+        int monsterID;
     }
 
 
