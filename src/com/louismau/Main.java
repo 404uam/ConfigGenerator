@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,6 +34,7 @@ public class Main {
         System.out.println("####################");
         for(int i = 0; i < 10; i++) {
             generateHunter(adjective, animal);
+            generateItem(i,descriptions,colour,noun);
         }
         System.out.println("####################");
         for (int i = 0; i < 7; i++)
@@ -40,48 +42,10 @@ public class Main {
             generateMH(i,adjective, noun);
         }
         System.out.println("####################");
-        for (int i = 0; i < 7; i++)
-        {
-            generateMonster(colour,adjective,animal);
+        for (int i = 0; i < 7; i++) {
+            generateMonster(colour, adjective, animal);
         }
-        /*
-        <ITEM>
-        ID
-        Name
-        HunterID
-        MissionID
-        Rank
-        Rarity
-        Value
-         */
-        /*
-        <ITEM NAME>
-        Name
-        Description
-         */
 
-        /*
-        <TEAM>
-        Name
-        Rank
-        HunterID
-         */
-
-        /*
-        <Hunting Missions>
-        ID
-        HunterID
-        MissionHolderID
-        expReward
-        goldReward
-        Deadline
-        Start Time
-        acceptTime
-        CompletionTime
-        ForfeitTime
-        Type
-        MonsterID
-         */
 
         /*
         <Item Foraging Mission>
@@ -219,7 +183,8 @@ public class Main {
     {
         Random rdm = new Random();
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
-        int rank = rdm.nextInt(100);
+        String[] rank = {"D","E","C","B","A","S"};
+        String teamRank = rank[rdm.nextInt(rank.length)];
         int hunterID = id;
 
         System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
@@ -261,7 +226,7 @@ public class Main {
         Rarity
         Value
          */
-    private static void generateItem(int hunterID, ArrayList<String> colour, ArrayList<String> noun)
+    private static void generateItem(int hunterID,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(100);
@@ -270,9 +235,70 @@ public class Main {
         String name = colour.get(rdm.nextInt(colour.size())) + noun.get(rdm.nextInt(noun.size()));
         String[] rank = {"D","E","C","B","A","S"};
         String itemRank = rank[rdm.nextInt(rank.length)];
-
+        int rarity = rdm.nextInt(100);
+        int itemValue;
+        switch (itemRank)
+        {
+            case "S":
+                itemValue = rdm.nextInt(1000000);
+                break;
+            case "A":
+                itemValue = rdm.nextInt(100000);
+                break;
+            case "B":
+                itemValue = rdm.nextInt(10000);
+                break;
+            case "C":
+            case "E":
+            case "D":
+                itemValue = rdm.nextInt(1000);
+                break;
+            default:
+             itemValue = 0;
+            break;
+        };
+        System.out.println("(" +id+","+hID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
+        generateItemDesc(name,desc,rdm);
 
     }
+    /*
+    <ITEM NAME>
+    Name
+    Description
+     */
+    private static void generateItemDesc(String name, ArrayList<String> desc,Random rdm) {
+
+        String description = desc.get(rdm.nextInt(desc.size()));
+
+        System.out.println("(" +name+ ","+description+ ")");
+    }
+
+    /*
+        <Hunting Missions>
+        ID
+        HunterID
+        MissionHolderID
+        expReward
+        goldReward
+        Deadline
+        Start Time
+        acceptTime
+        CompletionTime
+        ForfeitTime
+        Type
+        MonsterID
+         */
+    private static void generateHuntingMission()
+    {
+        Random rdm = new Random();
+        int id = rdm.nextInt(1000);
+        int hunterID;
+        int missionHolderID;
+        int expReward = rdm.nextInt(1000000);
+        int goldReward = rdm.nextInt(600000);
+
+    }
+
 
 }
 
