@@ -130,12 +130,34 @@ public class Main {
         }
         else
             gender = 'F';
-        int exp = rdm.nextInt(1000);
+        int exp = rdm.nextInt(10000);
         int gold = rdm.nextInt(1000000);
 
         System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +")");
     }
 
+    private static void generateHunterExp(int exp)
+    {
+        int lvl = 1;
+        if(exp >= 9000)
+        {
+            lvl = 100;
+        }
+        else if (exp >= 5000)
+        {
+            lvl = 50;
+        }
+        else if (exp >= 2500)
+        {
+            lvl = 25;
+        }
+        else if (exp >= 1000)
+        {
+            lvl = 10;
+        }
+            System.out.println("(" +exp+","+lvl+")");
+
+    }
         /*
         <Mission Holder>
         ID
