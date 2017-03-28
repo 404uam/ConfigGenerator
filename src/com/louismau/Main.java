@@ -155,7 +155,7 @@ public class Main {
         {
             lvl = 10;
         }
-            System.out.println("(" +exp+","+lvl+")");
+        System.out.println("(" +exp+","+lvl+")");
 
     }
         /*
@@ -326,10 +326,8 @@ public class Main {
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
-        String deadline;
+        String deadline; //Year-Month-Day
         String missionType;
-        int monsterID;
-
         generateHuntingDifficulty(goldReward,expReward);
     }
     private static void generateHuntingDifficulty(int gold, int exp)
@@ -356,6 +354,10 @@ public class Main {
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
         System.out.println("("+difficulty+","+exp+","+gold+")");
+
+    }
+    private static void generateHuntingMonster()
+    {
 
     }
 
