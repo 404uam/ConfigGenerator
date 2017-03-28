@@ -14,8 +14,13 @@ CREATE TABLE Hunter(
   teamName VARCHAR(26),
   PRIMARY KEY(hunterID),
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
+  
+CREATE TABLE Hunter_experience(
+        experience INTEGER,
+        hunterLevel INTEGER,
+		PRIMARY KEY(experience));
 
-  CREATE TABLE Monster(
+CREATE TABLE Monster(
     monsterID INTEGER,
     name VARCHAR(30),
     location CHAR(26),
@@ -38,6 +43,11 @@ CREATE TABLE Team_Captain(
             reputation INTEGER,
             goldBalance INTEGER,
 			PRIMARY KEY(missionHolderID));
+			
+CREATE TABLE MissionHolder_reputation(
+            goldBalance INTEGER, 
+            reputation INTEGER,
+            PRIMARY KEY(goldBalance));
   
   CREATE TABLE Item(
             itemID INTEGER, 
@@ -49,6 +59,12 @@ CREATE TABLE Team_Captain(
             itemValue INTEGER,
             PRIMARY KEY(itemID),
             FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
+			            
+CREATE TABLE Item_Name(
+            itemName VARCHAR(26), 
+            description VARCHAR(512),
+			PRIMARY KEY(itemName));
+
 
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
@@ -72,6 +88,14 @@ CREATE TABLE Hunting_missions_difficulty(
             expReward INTEGER, 
             goldValue INTEGER,
 			PRIMARY KEY (difficulty));
+			
+CREATE TABLE MMission_has_Monster(
+            huntingMissionId INTEGER, 
+            monsterid INTEGER,
+			PRIMARY KEY(huntingMissionId, monsterID),
+			FOREIGN KEY(huntingMissionId) REFERENCES Hunting_missions(huntingMissionId),
+			FOREIGN KEY(monsterID) REFERENCES Monster(monsterID));
+
 
 CREATE TABLE Item_Foraging_Mission(
             itemMissionId INTEGER,
@@ -96,32 +120,12 @@ CREATE TABLE Item_Mission_Difficulty(
             goldReward INTEGER,
             PRIMARY KEY (difficulty));
 
-CREATE TABLE MMission_has_Monster(
-            huntingMissionId INTEGER, 
-            monsterid INTEGER,
-			PRIMARY KEY(huntingMissionId, monsterID),
-			FOREIGN KEY(huntingMissionId) REFERENCES Hunting_missions(huntingMissionId),
-			FOREIGN KEY(monsterID) REFERENCES Monster(monsterID));
-
 CREATE TABLE IMission_has_Item(
             itemMissionId INTEGER, 
             ItemId INTEGER,
 			PRIMARY KEY(itemMissionId,ItemId),
 			FOREIGN KEY(itemMissionId) REFERENCES Item_Foraging_Mission(itemMissionId),
 			FOREIGN KEY(ItemId) REFERENCES Item(itemId));
-            
-CREATE TABLE Item_Name(
-            itemName VARCHAR(26), 
-            description VARCHAR(512),
-			PRIMARY KEY(itemName));
 
-CREATE TABLE MissionHolder_reputation(
-            goldBalance INTEGER, 
-            reputation INTEGER,
-            PRIMARY KEY(goldBalance));
 
-CREATE TABLE Hunter_experience(
-            experience INTEGER,
-            hunterLevel INTEGER,
-			PRIMARY KEY(experience));
 

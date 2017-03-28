@@ -28,14 +28,18 @@ public class Main {
         ArrayList<String> descriptions = new ArrayList<>();
 
         Path sqlFile = Paths.get("./insert.sql");
+        BufferedWriter bw;
 
         try {
-            BufferedWriter bw = Files.newBufferedWriter(sqlFile);
+           bw = Files.newBufferedWriter(sqlFile);
+
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
+
+
         readInDictionary(noun, verb, adjective, colour, animal, descriptions);
 
 
@@ -109,7 +113,7 @@ public class Main {
         Balance
         teamName
          */
-    private static void generateHunter(ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateHunter(BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(250);
@@ -124,6 +128,13 @@ public class Main {
             gender = 'F';
         int exp = rdm.nextInt(10000);
         int gold = rdm.nextInt(1000000);
+
+        try {
+            bw.write("insert into hunter "+"(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +",NULL)");
+        }
+        catch (Exception e)
+        {
+        }
 
         System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +")");
     }
