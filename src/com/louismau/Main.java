@@ -287,6 +287,8 @@ public class Main {
         String deadline;
         String missionType;
         int monsterID;
+
+        generateHuntingDifficulty(goldReward,expReward);
     }
     private static void generateHuntingDifficulty(int gold, int exp)
     {
@@ -311,14 +313,16 @@ public class Main {
         else
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
+        System.out.println("("+difficulty+","+exp+","+gold+")");
+
     }
 
         /*
         <Item Foraging Mission>
         ID
         itemID
-        Difficulty
         Deadline
+        Description
         ExpReward
         GoldReward
         StartTime
