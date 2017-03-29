@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.rmi.server.ExportException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -130,16 +128,16 @@ public class Main {
         int gold = rdm.nextInt(1000000);
 
         try {
-            bw.write("insert into hunter "+"(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +",NULL)");
+            bw.write("insert into Hunter values"+"(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +",NULL);");
         }
         catch (Exception e)
         {
         }
 
-        System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +")");
+        System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +");");
     }
 
-    private static void generateHunterExp(int exp)
+    private static void generateHunterExp(BufferedWriter bw, int exp)
     {
         int lvl = 1;
         if(exp >= 9000)
@@ -158,7 +156,14 @@ public class Main {
         {
             lvl = 10;
         }
-        System.out.println("(" +exp+","+lvl+")");
+        try{
+            bw.write("insert into Hunter_experience values("+exp+","+lvl+");");
+        }
+        catch (Exception e)
+        {
+
+        }
+        System.out.println("insert into Hunter_experience values("+exp+","+lvl+");");
 
     }
         /*
@@ -169,18 +174,26 @@ public class Main {
         Reputation
         Balance
          */
-    private static void generateMH(int id, ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateMH(BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int d = rdm.nextInt(250);
+        int id = rdm.nextInt(250);
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
         int age = rdm.nextInt(100);
         int rep = rdm.nextInt(1000);
         int gold = rdm.nextInt(10000000);
 
-        System.out.println("("+ id + "," + age + "," + name + "," + rep + "," + gold +")");
+        try{
+            bw.write("instert into MissionHolder values("+id+"," + age + "," + name + "," + rep + "," + gold +");");
+            generateMHReputation(bw,gold);
+        }
+        catch(Exception e)
+        {
+        }
+
+        System.out.println("instert into MissionHolder values("+ id + "," + age + "," + name + "," + rep + "," + gold +");");
     }
-    private static void generateMHReputation(int gold)
+    private static void generateMHReputation(BufferedWriter bw, int gold)
     {
         String reputation;
        if (gold >= 500000)
@@ -201,6 +214,12 @@ public class Main {
        }
        else
            reputation = "D";
+       try{
+           bw.write("insert into MissionHolder_reputation values(" +gold+","+reputation+ ");");
+       }
+       catch (Exception e)
+       {
+       }
 
        System.out.println("(" +gold+","+reputation+ ")");
     }
@@ -210,7 +229,7 @@ public class Main {
         Rank
         HunterID
          */
-    private static void generateTeam(int id, ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateTeam(int id,BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
@@ -218,6 +237,13 @@ public class Main {
         String teamRank = rank[rdm.nextInt(rank.length)];
         int hunterID = id;
 
+        try{
+            bw.write("insert into Team values(" +name+ ","+ rank +","+ hunterID +");");
+        }
+        catch (Exception e)
+        {
+
+        }
         System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
     }
         /*
@@ -229,7 +255,7 @@ public class Main {
         Remaining
         Domesticated
          */
-        private  static void generateMonster(ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
+        private  static void generateMonster(BufferedWriter bw,ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
         {
             Random rdm = new Random();
             int id = rdm.nextInt(100);
@@ -245,6 +271,12 @@ public class Main {
             else
                 domesticated = 'F';
 
+            try{
+                bw.write("insert into Monster values("+id+","+name+","+location+","+ferocity+","+remaining+","+domesticated+");");
+            }
+            catch (Exception e)
+            {
+            }
             System.out.println("("+id+","+name+","+location+","+ferocity+","+remaining+","+domesticated+")");
         }
     /*
@@ -257,7 +289,7 @@ public class Main {
         Rarity
         Value
          */
-    private static void generateItem(int hunterID,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
+    private static void generateItem(int hunterID,BufferedWriter bw,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(100);
@@ -288,8 +320,16 @@ public class Main {
              itemValue = 0;
             break;
         };
+        try
+        {
+            bw.write("insert into Item values(" +id+","+hID+",NULL,"+name+","+itemRank+","+rarity+","+itemValue+ ");");
+            generateItemDesc(bw,name,desc,rdm);
+        }
+        catch (Exception e)
+        {
+        }
         System.out.println("(" +id+","+hID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
-        generateItemDesc(name,desc,rdm);
+
 
     }
     /*
@@ -297,10 +337,11 @@ public class Main {
     Name
     Description
      */
-    private static void generateItemDesc(String name, ArrayList<String> desc,Random rdm) {
+    private static void generateItemDesc(BufferedWriter bw, String name, ArrayList<String> desc, Random rdm) throws Exception {
 
         String description = desc.get(rdm.nextInt(desc.size()));
 
+        bw.write("insert into Item_Name values(" +name+ ","+description+ ");");
         System.out.println("(" +name+ ","+description+ ")");
     }
 
@@ -320,7 +361,7 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission(ArrayList<String> desc)
+    private static void generateHuntingMission(BufferedWriter bw,ArrayList<String> desc)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
@@ -329,11 +370,20 @@ public class Main {
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
-        String deadline; //Year-Month-Day
+        String deadline = "2017-08-11"; //Year-Month-Day
         String missionType;
-        generateHuntingDifficulty(goldReward,expReward);
+
+        try{
+            bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+","+description+","+deadline+",NULL,NULL,NULL,NULL);");
+            generateHuntingDifficulty(bw,goldReward,expReward);
+        }
+        catch(Exception e)
+        {
+
+        }
+
     }
-    private static void generateHuntingDifficulty(int gold, int exp)
+    private static void generateHuntingDifficulty(BufferedWriter bw, int gold, int exp)throws Exception
     {
         Random rdm = new Random();
         String[] rank = {"D","E","C","B","A","S"};
@@ -356,6 +406,7 @@ public class Main {
         else
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
+        bw.write("insert into Huntin_missions_difficulty values("+difficulty+","+exp+","+gold+");");
         System.out.println("("+difficulty+","+exp+","+gold+")");
 
     }
@@ -379,7 +430,7 @@ public class Main {
         CompleteTime
         ForfeitTime
          */
-    private static void generateItemMission(int iID, int mhID,ArrayList<String> desc)
+    private static void generateItemMission(int iID, int mhID,BufferedWriter bw,ArrayList<String> desc)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
@@ -395,7 +446,7 @@ public class Main {
 
     private static void generateItemDifficulty(int gold, int exp)
     {
-        generateHuntingDifficulty(gold,exp);
+        generateHuntingDifficulty(bw, gold,exp);
     }
 
 
