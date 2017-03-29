@@ -32,7 +32,7 @@ public class Main {
 
         try {
            bw = Files.newBufferedWriter(sqlFile);
-           for(int i = 0; i< 10; i++)
+           for(int i = 0; i< 20; i++)
            {
                generateHunter(bw,i,adjective,noun);
                if(i%2 ==0)
@@ -502,7 +502,7 @@ public class Main {
 
     private static void generateItemMissionItem(BufferedWriter bw,int id, int item) throws Exception
     {
-        bw.write("insert into IMission_has_Item(" + id +","+item+");");
+        bw.write("insert into IMission_has_Item values(" + id +","+item+");");
         bw.newLine();
     }
 

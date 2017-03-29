@@ -102,7 +102,7 @@ CREATE TABLE Item_Foraging_Mission(
             itemMissionId INTEGER,
             hunterID INTEGER,
             missionHolderID INTEGER NOT NULL,
-            deadline INTEGER,
+            deadline CHAR(20),
             description VARCHAR(512),            
             expReward INTEGER, 
             goldReward INTEGER,
@@ -115,7 +115,7 @@ CREATE TABLE Item_Foraging_Mission(
             FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Item_Mission_Difficulty(
-            difficulty INTEGER, 
+            difficulty CHAR(1), 
             expReward INTEGER, 
             goldReward INTEGER,
             PRIMARY KEY (difficulty));
