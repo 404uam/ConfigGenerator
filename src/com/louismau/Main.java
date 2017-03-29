@@ -430,7 +430,7 @@ public class Main {
         else
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
-        bw.write("insert into Huntin_missions_difficulty values("+difficulty+","+exp+","+gold+");");
+        bw.write("insert into Hunting_missions_difficulty values("+difficulty+","+exp+","+gold+");");
         bw.newLine();
         System.out.println("("+difficulty+","+exp+","+gold+")");
 
