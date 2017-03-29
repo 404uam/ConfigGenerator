@@ -44,7 +44,7 @@ public class Main {
            for(int i = 0; i <7; i++)
             {
                 generateItem(i,bw,descriptions,colour,noun);
-                generateMonster(bw,colour,adjective,animal);
+                generateMonster(i,bw,colour,adjective,animal);
                 generateHuntingMission(bw,i,descriptions);
             }
            bw.close();
@@ -276,10 +276,9 @@ public class Main {
         Remaining
         Domesticated
          */
-        private  static void generateMonster(BufferedWriter bw,ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
+        private  static void generateMonster(int id,BufferedWriter bw,ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
         {
             Random rdm = new Random();
-            int id = rdm.nextInt(100);
             String name = colour.get(rdm.nextInt(colour.size())) + adj.get(rdm.nextInt(adj.size())) + animal.get(rdm.nextInt(animal.size()));
             String location = adj.get(rdm.nextInt(adj.size())) + colour.get(rdm.nextInt(colour.size()));
             int ferocity = rdm.nextInt(150);
