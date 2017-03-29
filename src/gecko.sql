@@ -16,9 +16,9 @@ CREATE TABLE Hunter(
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
   
 CREATE TABLE Hunter_experience(
-        experience INTEGER,
-        hunterLevel INTEGER,
-		PRIMARY KEY(experience));
+    experience INTEGER,
+    hunterLevel INTEGER,
+	PRIMARY KEY(experience));
 
 CREATE TABLE Monster(
     monsterID INTEGER,
