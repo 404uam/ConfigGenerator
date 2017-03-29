@@ -80,7 +80,6 @@ CREATE TABLE Hunting_missions(
             forfeitTime CHAR(20),
 			PRIMARY KEY (huntingMissionID),
 			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-			FOREIGN KEY(monsterID) REFERENCES Monster(monsterID),
       FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Hunting_missions_difficulty(
@@ -111,7 +110,6 @@ CREATE TABLE Item_Foraging_Mission(
             forefeitTime CHAR(20),
 			PRIMARY KEY (itemMissionId),
             FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-			FOREIGN KEY(itemID) REFERENCES Item(itemID),
             FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Item_Mission_Difficulty(
