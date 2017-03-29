@@ -467,6 +467,8 @@ public class Main {
             bw.write("insert into Item_Foraging_Mission values("+id+",NULL,"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateItemDifficulty(bw,goldReward,expReward);
+            while(itemID == 0)
+                itemID = reroll(id);
             generateItemMissionItem(bw,id,itemID);
         }
         catch(Exception e)
@@ -474,6 +476,10 @@ public class Main {
 
         }
 
+    }
+    private static int reroll(int id) {
+        Random rdm = new Random();
+        return rdm.nextInt(id);
     }
 
     private static void generateItemDifficulty(BufferedWriter bw,int gold, int exp) throws Exception
