@@ -18,7 +18,8 @@ CREATE TABLE Hunter(
 CREATE TABLE Hunter_experience(
     experience INTEGER,
     hunterLevel INTEGER,
-	PRIMARY KEY(experience));
+	PRIMARY KEY(experience),
+	FOREIGN KEY(experience) REFERENCES Hunter(experience));
 
 CREATE TABLE Monster(
     monsterID INTEGER,
@@ -40,14 +41,14 @@ CREATE TABLE Team_Captain(
             missionHolderID INTEGER,
             age INTEGER,
             name VARCHAR(26),
-            reputation INTEGER,
             goldBalance INTEGER,
 			PRIMARY KEY(missionHolderID));
 			
 CREATE TABLE MissionHolder_reputation(
             goldBalance INTEGER, 
             reputation CHAR(1),
-            PRIMARY KEY(goldBalance));
+            PRIMARY KEY(goldBalance),
+			FOREIGN KEY (goldBalance) REFERENCES MissionHolder(goldBalance));
   
   CREATE TABLE Item(
             itemID INTEGER, 

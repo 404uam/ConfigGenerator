@@ -234,7 +234,7 @@ public class Main {
        else
            reputation = "D";
        try{
-           bw.write("insert into MissionHolder_reputation values(" +gold+","+reputation+ ");");
+           bw.write("insert into MissionHolder_reputation values(" +gold+",'"+reputation+ "');");
            bw.newLine();
        }
        catch (Exception e)
@@ -430,7 +430,7 @@ public class Main {
         else
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
-        bw.write("insert into Hunting_missions_difficulty values("+difficulty+","+exp+","+gold+");");
+        bw.write("insert into Hunting_missions_difficulty values('"+difficulty+"',"+exp+","+gold+");");
         bw.newLine();
         System.out.println("("+difficulty+","+exp+","+gold+")");
 
