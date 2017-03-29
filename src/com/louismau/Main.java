@@ -43,7 +43,7 @@ public class Main {
            }
            for(int i = 1; i <15; i++)
             {
-                generateItem(i,bw,descriptions,colour,noun);
+                generateItem(i,i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
                 generateHuntingMission(bw,i,descriptions);
                 generateItemMission(i,bw,descriptions);
@@ -309,10 +309,9 @@ public class Main {
         Rarity
         Value
          */
-    private static void generateItem(int hunterID,BufferedWriter bw,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
+    private static void generateItem(int id,int hunterID,BufferedWriter bw,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(100);
         int hID = hunterID;
         int mID;
         String name = colour.get(rdm.nextInt(colour.size())) + noun.get(rdm.nextInt(noun.size()));
