@@ -388,7 +388,7 @@ public class Main {
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
-        int monsterID = rdm.nextInt(7);
+        int monsterID = rdm.nextInt(missionHolderID);
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
