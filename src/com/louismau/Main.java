@@ -389,7 +389,7 @@ public class Main {
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
-        int hunterID = rdm.nextInt(10);
+        int monsterID = rdm.nextInt(7);
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
@@ -400,7 +400,7 @@ public class Main {
             bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
-            generateHuntingMonster(hunterID,bw,id);
+            generateHuntingMonster(monsterID,bw,id);
         }
         catch(Exception e)
         {
