@@ -28,9 +28,15 @@ public class Main {
         Path sqlFile = Paths.get("./insert.sql");
         BufferedWriter bw;
 
+        readInDictionary(noun, verb, adjective, colour, animal, descriptions);
+
         try {
            bw = Files.newBufferedWriter(sqlFile);
-
+           for(int i = 0; i< 10; i++)
+           {
+               generateHunter(bw,i,adjective,noun);
+           }
+           bw.close();
         }
         catch(Exception e)
         {
@@ -38,7 +44,6 @@ public class Main {
         }
 
 
-        readInDictionary(noun, verb, adjective, colour, animal, descriptions);
 
 
     }
@@ -111,10 +116,9 @@ public class Main {
         Balance
         teamName
          */
-    private static void generateHunter(BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateHunter(BufferedWriter bw,int id, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(250);
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
         int age = rdm.nextInt(100);
         char gender;
@@ -129,9 +133,12 @@ public class Main {
 
         try {
             bw.write("insert into Hunter values"+"(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +",NULL);");
+            bw.newLine();
+            generateHunterExp(bw,exp);
         }
         catch (Exception e)
         {
+            e.printStackTrace();
         }
 
         System.out.println("(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +");");
@@ -158,6 +165,7 @@ public class Main {
         }
         try{
             bw.write("insert into Hunter_experience values("+exp+","+lvl+");");
+            bw.newLine();
         }
         catch (Exception e)
         {
@@ -174,10 +182,9 @@ public class Main {
         Reputation
         Balance
          */
-    private static void generateMH(BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
+    private static void generateMH(BufferedWriter bw,int id, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(250);
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
         int age = rdm.nextInt(100);
         int rep = rdm.nextInt(1000);
