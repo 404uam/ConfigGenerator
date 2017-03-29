@@ -143,7 +143,7 @@ public class Main {
         int gold = rdm.nextInt(1000000);
 
         try {
-            bw.write("insert into Hunter values"+"(" + id + "," + name + "," + age + "," + gender + "," + exp + "," + gold +",NULL);");
+            bw.write("insert into Hunter values"+"(" + id + ",'" + name + "'," + age + ",'" + gender + "'," + exp + "," + gold +",NULL);");
             bw.newLine();
             generateHunterExp(bw,exp);
         }
@@ -202,7 +202,7 @@ public class Main {
         int gold = rdm.nextInt(10000000);
 
         try{
-            bw.write("insert into MissionHolder values("+id+"," + age + "," + name + "," + rep + "," + gold +");");
+            bw.write("insert into MissionHolder values("+id+"," + age + ",'" + name + "'," + rep + "," + gold +");");
             generateMHReputation(bw,gold);
         }
         catch(Exception e)
@@ -256,7 +256,7 @@ public class Main {
         int hunterID = id;
 
         try{
-            bw.write("insert into Team values(" +name+ ","+ rank +","+ hunterID +");");
+            bw.write("insert into Team values('" +name+ "','"+ rank +"',"+ hunterID +");");
             bw.newLine();
         }
         catch (Exception e)
@@ -291,7 +291,7 @@ public class Main {
                 domesticated = 'F';
 
             try{
-                bw.write("insert into Monster values("+id+","+name+","+location+","+ferocity+","+remaining+","+domesticated+");");
+                bw.write("insert into Monster values("+id+",'"+name+"','"+location+"',"+ferocity+","+remaining+",'"+domesticated+"');");
                 bw.newLine();
             }
             catch (Exception e)
@@ -342,7 +342,7 @@ public class Main {
         };
         try
         {
-            bw.write("insert into Item values(" +id+","+hID+",NULL,"+name+","+itemRank+","+rarity+","+itemValue+ ");");
+            bw.write("insert into Item values(" +id+","+hID+",NULL,'"+name+"','"+itemRank+"',"+rarity+","+itemValue+ ");");
             bw.newLine();
             generateItemDesc(bw,name,desc,rdm);
         }
@@ -362,9 +362,9 @@ public class Main {
 
         String description = desc.get(rdm.nextInt(desc.size()));
 
-        bw.write("insert into Item_Name values(" +name+ ","+description+ ");");
+        bw.write("insert into Item_Name values('" +name+ "','"+description+ "');");
         bw.newLine();
-        System.out.println("(" +name+ ","+description+ ")");
+        System.out.println("('" +name+ "','"+description+ "')");
     }
 
     /*
@@ -395,7 +395,7 @@ public class Main {
         String missionType;
 
         try{
-            bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+","+description+","+deadline+",NULL,NULL,NULL,NULL);");
+            bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
             generateHuntingMonster(hunterID,bw,id);
