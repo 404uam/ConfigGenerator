@@ -39,11 +39,11 @@ public class Main {
                {
                    generateTeam(i,bw,adjective,noun);
                }
-               generateItem(i,bw,descriptions,colour,noun);
                generateMH(bw,i,adjective,noun);
            }
            for(int i = 0; i <7; i++)
             {
+                generateItem(i,bw,descriptions,colour,noun);
                 generateMonster(bw,colour,adjective,animal);
                 generateHuntingMission(bw,i,descriptions);
             }
@@ -203,6 +203,7 @@ public class Main {
 
         try{
             bw.write("insert into MissionHolder values("+id+"," + age + ",'" + name + "'," + rep + "," + gold +");");
+            bw.newLine();
             generateMHReputation(bw,gold);
         }
         catch(Exception e)
@@ -234,6 +235,7 @@ public class Main {
            reputation = "D";
        try{
            bw.write("insert into MissionHolder_reputation values(" +gold+","+reputation+ ");");
+           bw.newLine();
        }
        catch (Exception e)
        {
