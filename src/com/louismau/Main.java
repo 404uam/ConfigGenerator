@@ -468,7 +468,7 @@ public class Main {
             bw.newLine();
             generateItemDifficulty(bw,goldReward,expReward);
             while(itemID == 0)
-                itemID = reroll(id);
+                itemID = reroll(id+1);
             generateItemMissionItem(bw,id,itemID);
         }
         catch(Exception e)
