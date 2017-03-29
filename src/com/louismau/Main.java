@@ -455,23 +455,56 @@ public class Main {
         CompleteTime
         ForfeitTime
          */
-    private static void generateItemMission(int iID, int mhID,BufferedWriter bw,ArrayList<String> desc)
+    private static void generateItemMission(int id,BufferedWriter bw,ArrayList<String> desc)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(1000);
-        int hunterID;
-        int missionHolderID;
-        int itemID;
+        int itemID = rdm.nextInt(id);
+        int missionHolderID = rdm.nextInt(id);
+        String deadline = "2017-08-11";
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
-        String deadline;
-        String missionType;
+
+        try{
+            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
+            bw.newLine();
+            generateItemDifficulty(bw,goldReward,expReward);
+            generateItemMissionItem(bw,id,itemID);
+        }
+        catch(Exception e)
+        {
+
+        }
+
     }
 
     private static void generateItemDifficulty(BufferedWriter bw,int gold, int exp) throws Exception
     {
-        generateHuntingDifficulty(bw, gold,exp);
+        Random rdm = new Random();
+        String[] rank = {"C","B","A","S"};
+        String difficulty;
+        int determine = (gold + exp)/2;
+
+        if (determine >= 250000)
+        {
+            if(determine % 2 == 0)
+            {
+                difficulty = "S";
+            }
+            else
+                difficulty = "A";
+        }
+        else
+            difficulty = rank[rdm.nextInt(rank.length-1)];
+
+        bw.write("insert into Item_Mission_Difficulty values('"+difficulty+"',"+exp+","+gold+");");
+        bw.newLine();
+    }
+
+    private static void generateItemMissionItem(BufferedWriter bw,int id, int item) throws Exception
+    {
+        bw.write("insert into IMission_has_Item(" + id +","+item+");");
+        bw.newLine();
     }
 
 
