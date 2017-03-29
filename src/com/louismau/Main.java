@@ -361,12 +361,11 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission(BufferedWriter bw,ArrayList<String> desc)
+    private static void generateHuntingMission(BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
         int hunterID;
-        int missionHolderID;
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
@@ -444,7 +443,7 @@ public class Main {
         String missionType;
     }
 
-    private static void generateItemDifficulty(int gold, int exp)
+    private static void generateItemDifficulty(BufferedWriter bw,int gold, int exp) throws Exception
     {
         generateHuntingDifficulty(bw, gold,exp);
     }
