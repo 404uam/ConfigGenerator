@@ -41,7 +41,7 @@ public class Main {
                }
                generateMH(bw,i,adjective,noun);
            }
-           for(int i = 0; i <15; i++)
+           for(int i = 1; i <15; i++)
             {
                 generateItem(i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
