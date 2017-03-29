@@ -143,9 +143,9 @@ public class Main {
         int gold = rdm.nextInt(1000000);
 
         try {
+            generateHunterExp(bw,exp);
             bw.write("insert into Hunter values"+"(" + id + ",'" + name + "'," + age + ",'" + gender + "'," + exp + "," + gold +",NULL);");
             bw.newLine();
-            generateHunterExp(bw,exp);
         }
         catch (Exception e)
         {
@@ -202,9 +202,9 @@ public class Main {
         int gold = rdm.nextInt(10000000);
 
         try{
-            bw.write("insert into MissionHolder values("+id+"," + age + ",'" + name + "'," + rep + "," + gold +");");
-            bw.newLine();
             generateMHReputation(bw,gold);
+            bw.write("insert into MissionHolder values("+id+"," + age + ",'" + name + "'," + gold +");");
+            bw.newLine();
         }
         catch(Exception e)
         {
