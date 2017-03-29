@@ -35,7 +35,18 @@ public class Main {
            for(int i = 0; i< 10; i++)
            {
                generateHunter(bw,i,adjective,noun);
+               if(i%2 ==0)
+               {
+                   generateTeam(i,bw,adjective,noun);
+               }
+               generateItem(i,bw,descriptions,colour,noun);
+               generateMH(bw,i,adjective,noun);
            }
+           for(int i = 0; i <7; i++)
+            {
+                generateMonster(bw,colour,adjective,animal);
+                generateHuntingMission(bw,i,descriptions);
+            }
            bw.close();
         }
         catch(Exception e)
@@ -191,14 +202,14 @@ public class Main {
         int gold = rdm.nextInt(10000000);
 
         try{
-            bw.write("instert into MissionHolder values("+id+"," + age + "," + name + "," + rep + "," + gold +");");
+            bw.write("insert into MissionHolder values("+id+"," + age + "," + name + "," + rep + "," + gold +");");
             generateMHReputation(bw,gold);
         }
         catch(Exception e)
         {
         }
 
-        System.out.println("instert into MissionHolder values("+ id + "," + age + "," + name + "," + rep + "," + gold +");");
+        System.out.println("insert into MissionHolder values("+ id + "," + age + "," + name + "," + rep + "," + gold +");");
     }
     private static void generateMHReputation(BufferedWriter bw, int gold)
     {
@@ -246,6 +257,7 @@ public class Main {
 
         try{
             bw.write("insert into Team values(" +name+ ","+ rank +","+ hunterID +");");
+            bw.newLine();
         }
         catch (Exception e)
         {
@@ -280,6 +292,7 @@ public class Main {
 
             try{
                 bw.write("insert into Monster values("+id+","+name+","+location+","+ferocity+","+remaining+","+domesticated+");");
+                bw.newLine();
             }
             catch (Exception e)
             {
@@ -330,6 +343,7 @@ public class Main {
         try
         {
             bw.write("insert into Item values(" +id+","+hID+",NULL,"+name+","+itemRank+","+rarity+","+itemValue+ ");");
+            bw.newLine();
             generateItemDesc(bw,name,desc,rdm);
         }
         catch (Exception e)
@@ -349,6 +363,7 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
 
         bw.write("insert into Item_Name values(" +name+ ","+description+ ");");
+        bw.newLine();
         System.out.println("(" +name+ ","+description+ ")");
     }
 
@@ -372,7 +387,7 @@ public class Main {
     {
         Random rdm = new Random();
         int id = rdm.nextInt(1000);
-        int hunterID;
+        int hunterID = rdm.nextInt(10);
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
         String description = desc.get(rdm.nextInt(desc.size()));
@@ -381,13 +396,14 @@ public class Main {
 
         try{
             bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+","+description+","+deadline+",NULL,NULL,NULL,NULL);");
+            bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
+            generateHuntingMonster(hunterID,bw,id);
         }
         catch(Exception e)
         {
 
         }
-
     }
     private static void generateHuntingDifficulty(BufferedWriter bw, int gold, int exp)throws Exception
     {
@@ -413,12 +429,14 @@ public class Main {
             difficulty = rank[rdm.nextInt(rank.length-1)];
 
         bw.write("insert into Huntin_missions_difficulty values("+difficulty+","+exp+","+gold+");");
+        bw.newLine();
         System.out.println("("+difficulty+","+exp+","+gold+")");
 
     }
-    private static void generateHuntingMonster()
+    private static void generateHuntingMonster(int monsterID,BufferedWriter bw, int missionID) throws Exception
     {
-
+        bw.write("insert into MMission_has_Monster values(" +missionID+","+monsterID+");");
+        bw.newLine();
     }
 
         /*
