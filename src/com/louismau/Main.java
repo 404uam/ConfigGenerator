@@ -41,11 +41,12 @@ public class Main {
                }
                generateMH(bw,i,adjective,noun);
            }
-           for(int i = 0; i <7; i++)
+           for(int i = 0; i <15; i++)
             {
                 generateItem(i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
                 generateHuntingMission(bw,i,descriptions);
+                generateItemMission(i,bw,descriptions);
             }
            bw.close();
         }
@@ -53,8 +54,6 @@ public class Main {
         {
             e.printStackTrace();
         }
-
-
 
 
     }
