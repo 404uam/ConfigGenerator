@@ -256,7 +256,7 @@ public class Main {
         int hunterID = id;
 
         try{
-            bw.write("insert into Team values('" +name+ "','"+ rank +"',"+ hunterID +");");
+            bw.write("insert into Team values('" +name+ "','"+ teamRank +"',"+ hunterID +");");
             bw.newLine();
         }
         catch (Exception e)
