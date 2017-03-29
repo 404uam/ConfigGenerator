@@ -46,7 +46,7 @@ CREATE TABLE Team_Captain(
 			
 CREATE TABLE MissionHolder_reputation(
             goldBalance INTEGER, 
-            reputation INTEGER,
+            reputation CHAR(1),
             PRIMARY KEY(goldBalance));
   
   CREATE TABLE Item(
@@ -83,7 +83,7 @@ CREATE TABLE Hunting_missions(
       FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Hunting_missions_difficulty(
-            difficulty INTEGER,
+            difficulty CHAR(1),
             expReward INTEGER, 
             goldValue INTEGER,
 			PRIMARY KEY (difficulty));
