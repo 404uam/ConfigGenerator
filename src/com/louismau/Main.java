@@ -319,7 +319,6 @@ public class Main {
     private static void generateItem(int id,int hunterID,BufferedWriter bw,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int hID = hunterID;
         int mID;
         String name = colour.get(rdm.nextInt(colour.size())) + noun.get(rdm.nextInt(noun.size()));
         String[] rank = {"D","E","C","B","A","S"};
@@ -348,14 +347,14 @@ public class Main {
         };
         try
         {
-            bw.write("insert into Item values(" +id+","+hID+",NULL,'"+name+"','"+itemRank+"',"+rarity+","+itemValue+ ");");
+            bw.write("insert into Item values(" +id+","+hunterID+",NULL,'"+name+"','"+itemRank+"',"+rarity+","+itemValue+ ");");
             bw.newLine();
             generateItemDesc(bw,name,desc,rdm);
         }
         catch (Exception e)
         {
         }
-        System.out.println("(" +id+","+hID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
+        System.out.println("(" +id+","+hunterID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
 
 
     }
