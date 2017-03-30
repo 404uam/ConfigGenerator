@@ -252,13 +252,14 @@ public class Main {
     {
         Random rdm = new Random();
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
-        String[] rank = {"D","E","C","B","A","S"};
+        String[] rank = {"D","C","B","A","S"};
         String teamRank = rank[rdm.nextInt(rank.length)];
         int hunterID = id;
 
         try{
             bw.write("insert into Team values('" +name+ "','"+ teamRank +"',"+ hunterID +");");
             bw.newLine();
+            updateHunter(name,hunterID,bw);
         }
         catch (Exception e)
         {
@@ -266,15 +267,21 @@ public class Main {
         }
         System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
     }
-        /*
-        <MONSTER>
-        ID
-        Name
-        Location
-        Ferocity
-        Remaining
-        Domesticated
-         */
+
+    private static void updateHunter(String name, int hunterID, BufferedWriter bw) throws  Exception{
+        bw.write("update Hunter set teamName = '"+name+"' where hunterID ="+hunterID+";");
+        bw.newLine();
+    }
+
+    /*
+    <MONSTER>
+    ID
+    Name
+    Location
+    Ferocity
+    Remaining
+    Domesticated
+     */
         private  static void generateMonster(int id,BufferedWriter bw,ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
         {
             Random rdm = new Random();
