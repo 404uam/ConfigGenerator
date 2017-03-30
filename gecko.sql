@@ -104,7 +104,7 @@ CREATE TABLE Hunting_missions_difficulty(
             expReward INTEGER, 
             goldValue INTEGER,
 			PRIMARY KEY (difficulty),
-			FOREIGN KEY (difficutly) REFERENCES Hunting_missions(difficulty));
+			FOREIGN KEY (difficulty) REFERENCES Hunting_missions(difficulty));
 			
 CREATE TABLE MMission_has_Monster(
             huntingMissionId INTEGER, 
