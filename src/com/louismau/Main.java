@@ -45,7 +45,7 @@ public class Main {
             {
                 generateItem(i,i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
-                generateHuntingMission(bw,i,descriptions);
+                generateHuntingMission(i,bw,i,descriptions);
                 generateItemMission(i,bw,descriptions);
             }
            bw.close();
@@ -389,10 +389,9 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission(BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
+    private static void generateHuntingMission(int id,BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(1000);
         int monsterID = rdm.nextInt(missionHolderID);
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
