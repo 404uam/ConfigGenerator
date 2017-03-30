@@ -72,9 +72,8 @@ CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
             hunterID INTEGER,
             missionHolderID INTEGER NOT NULL,
-            expReward INTEGER,
-            goldReward INTEGER,
             description VARCHAR(512),
+            difficulty CHAR(1),
             deadline CHAR(20), 
             startTime CHAR(20),            
             acceptTime CHAR(20), 
@@ -88,7 +87,8 @@ CREATE TABLE Hunting_missions_difficulty(
             difficulty CHAR(1),
             expReward INTEGER, 
             goldValue INTEGER,
-			PRIMARY KEY (difficulty));
+			PRIMARY KEY (difficulty)
+			FOREIGN KEY (difficutly) REFERENCES Hunting_missions(difficulty));
 			
 CREATE TABLE MMission_has_Monster(
             huntingMissionId INTEGER, 
