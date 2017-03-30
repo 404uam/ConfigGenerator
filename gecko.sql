@@ -103,7 +103,7 @@ CREATE TABLE Hunting_missions_difficulty(
             difficulty CHAR(1),
             expReward INTEGER, 
             goldValue INTEGER,
-			PRIMARY KEY (difficulty)
+			PRIMARY KEY (difficulty),
 			FOREIGN KEY (difficutly) REFERENCES Hunting_missions(difficulty));
 			
 CREATE TABLE MMission_has_Monster(
