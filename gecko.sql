@@ -134,7 +134,7 @@ CREATE TABLE Item_Mission_Difficulty(
             difficulty CHAR(1), 
             expReward INTEGER, 
             goldReward INTEGER,
-            PRIMARY KEY (difficulty));
+            PRIMARY KEY (expReward,goldReward));
 
 CREATE TABLE IMission_has_Item(
             itemMissionId INTEGER, 
