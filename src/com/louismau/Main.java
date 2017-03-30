@@ -404,6 +404,8 @@ public class Main {
             bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
+            while(monsterID == 0)
+                monsterID = reroll(id+1);
             generateHuntingMonster(monsterID,bw,id);
         }
         catch(Exception e)
