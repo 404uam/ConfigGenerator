@@ -394,7 +394,7 @@ public class Main {
         String missionType;
 
         try{
-            bw.write("insert into Hunting_missions values("+id+",NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
+            bw.write("insert into Hunting_missions values("+id+",NULL,NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
             generateHuntingMonster(monsterID,bw,id);
@@ -464,7 +464,7 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
 
         try{
-            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
+            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,NULL"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateItemDifficulty(bw,goldReward,expReward);
             generateItemMissionItem(bw,id,itemID);
