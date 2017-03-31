@@ -71,6 +71,7 @@ CREATE TABLE Item_Name(
 CREATE TABLE Hunting_missions(
             huntingMissionID INTEGER,
             hunterID INTEGER,
+            teamName VARCHAR(26),
             missionHolderID INTEGER NOT NULL,
             expReward INTEGER,
             goldReward INTEGER,
@@ -82,6 +83,7 @@ CREATE TABLE Hunting_missions(
             forfeitTime CHAR(20),
 			PRIMARY KEY (huntingMissionID),
 			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
+      FOREIGN KEY (teamName) REFERENCES Team(teamName),
       FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Hunting_missions_difficulty(
@@ -101,6 +103,7 @@ CREATE TABLE MMission_has_Monster(
 CREATE TABLE Item_Foraging_Mission(
             itemMissionId INTEGER,
             hunterID INTEGER,
+            teamName VARCHAR(26),
             missionHolderID INTEGER NOT NULL,
             deadline CHAR(20),
             description VARCHAR(512),            
@@ -112,6 +115,7 @@ CREATE TABLE Item_Foraging_Mission(
             forefeitTime CHAR(20),
 			PRIMARY KEY (itemMissionId),
             FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
+            FOREIGN KEY (teamName) REFERENCES Team(teamName),
             FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Item_Mission_Difficulty(
