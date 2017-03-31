@@ -45,7 +45,7 @@ public class Main {
             {
                 generateItem(i,i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
-                generateHuntingMission(bw,i,descriptions);
+                generateHuntingMission(i,bw,i,descriptions);
                 generateItemMission(i,bw,descriptions);
             }
            bw.close();
@@ -252,13 +252,14 @@ public class Main {
     {
         Random rdm = new Random();
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
-        String[] rank = {"D","E","C","B","A","S"};
+        String[] rank = {"D","C","B","A","S"};
         String teamRank = rank[rdm.nextInt(rank.length)];
         int hunterID = id;
 
         try{
             bw.write("insert into Team values('" +name+ "','"+ teamRank +"',"+ hunterID +");");
             bw.newLine();
+            updateHunter(name,hunterID,bw);
         }
         catch (Exception e)
         {
@@ -266,15 +267,21 @@ public class Main {
         }
         System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
     }
-        /*
-        <MONSTER>
-        ID
-        Name
-        Location
-        Ferocity
-        Remaining
-        Domesticated
-         */
+
+    private static void updateHunter(String name, int hunterID, BufferedWriter bw) throws  Exception{
+        bw.write("update Hunter set teamName = '"+name+"' where hunterID ="+hunterID+";");
+        bw.newLine();
+    }
+
+    /*
+    <MONSTER>
+    ID
+    Name
+    Location
+    Ferocity
+    Remaining
+    Domesticated
+     */
         private  static void generateMonster(int id,BufferedWriter bw,ArrayList<String> colour, ArrayList<String> adj, ArrayList<String> animal)
         {
             Random rdm = new Random();
@@ -312,7 +319,6 @@ public class Main {
     private static void generateItem(int id,int hunterID,BufferedWriter bw,ArrayList<String> desc, ArrayList<String> colour, ArrayList<String> noun)
     {
         Random rdm = new Random();
-        int hID = hunterID;
         int mID;
         String name = colour.get(rdm.nextInt(colour.size())) + noun.get(rdm.nextInt(noun.size()));
         String[] rank = {"D","E","C","B","A","S"};
@@ -341,14 +347,14 @@ public class Main {
         };
         try
         {
-            bw.write("insert into Item values(" +id+","+hID+",NULL,'"+name+"','"+itemRank+"',"+rarity+","+itemValue+ ");");
+            bw.write("insert into Item values(" +id+","+hunterID+",NULL,'"+name+"','"+itemRank+"',"+rarity+","+itemValue+ ");");
             bw.newLine();
             generateItemDesc(bw,name,desc,rdm);
         }
         catch (Exception e)
         {
         }
-        System.out.println("(" +id+","+hID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
+        System.out.println("(" +id+","+hunterID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
 
 
     }
@@ -382,10 +388,9 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission(BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
+    private static void generateHuntingMission(int id,BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
     {
         Random rdm = new Random();
-        int id = rdm.nextInt(1000);
         int monsterID = rdm.nextInt(missionHolderID);
         int expReward = rdm.nextInt(1000000);
         int goldReward = rdm.nextInt(600000);
@@ -397,6 +402,8 @@ public class Main {
             bw.write("insert into Hunting_missions values("+id+",NULL,NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateHuntingDifficulty(bw,goldReward,expReward);
+            while(monsterID == 0)
+                monsterID = reroll(id+1);
             generateHuntingMonster(monsterID,bw,id);
         }
         catch(Exception e)
@@ -467,6 +474,8 @@ public class Main {
             bw.write("insert into Item_Foraging_Mission values("+id+",NULL,NULL"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateItemDifficulty(bw,goldReward,expReward);
+            while(itemID == 0)
+                itemID = reroll(id+1);
             generateItemMissionItem(bw,id,itemID);
         }
         catch(Exception e)
@@ -474,6 +483,10 @@ public class Main {
 
         }
 
+    }
+    private static int reroll(int id) {
+        Random rdm = new Random();
+        return rdm.nextInt(id);
     }
 
     private static void generateItemDifficulty(BufferedWriter bw,int gold, int exp) throws Exception
