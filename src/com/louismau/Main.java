@@ -471,7 +471,7 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
 
         try{
-            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,NULL,"+missionHolderID+",'"+deadline+"','"+description+"',"+expReward+","+goldReward+",NULL,NULL,NULL,NULL);");
+            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
             bw.newLine();
             generateItemDifficulty(bw,goldReward,expReward);
             while(itemID == 0)
