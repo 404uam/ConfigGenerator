@@ -35,18 +35,20 @@ public class Main {
            for(int i = 0; i< 20; i++)
            {
                generateHunter(bw,i,adjective,noun);
-               if(i%2 ==0)
-               {
-                   generateTeam(i,bw,adjective,noun);
-               }
                generateMH(bw,i,adjective,noun);
            }
            for(int i = 1; i <15; i++)
             {
                 generateItem(i,i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
-                generateHuntingMission(i,bw,i,descriptions);
-                generateItemMission(i,bw,descriptions);
+                generateHuntingMission(i,bw,i,descriptions, null);
+                generateItemMission(i,bw,descriptions, null);
+                if(i%2 ==0)
+                {
+                    String team = generateTeam(i,bw,adjective,noun);
+                    generateHuntingMission(i,bw,i,descriptions,team);
+                    generateItemMission(i,bw,descriptions,team);
+                }
             }
            bw.close();
         }
@@ -248,7 +250,7 @@ public class Main {
         Rank
         HunterID
          */
-    private static void generateTeam(int id,BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
+    private static String generateTeam(int id,BufferedWriter bw, ArrayList<String> adj, ArrayList<String> noun)
     {
         Random rdm = new Random();
         String name = adj.get(rdm.nextInt(adj.size())) +" "+ noun.get(rdm.nextInt(noun.size()));
@@ -266,6 +268,7 @@ public class Main {
 
         }
         System.out.println("(" +name+ ","+ rank +","+ hunterID +")");
+        return name;
     }
 
     private static void updateHunter(String name, int hunterID, BufferedWriter bw) throws  Exception{
@@ -356,7 +359,6 @@ public class Main {
         }
         System.out.println("(" +id+","+hunterID+","+name+","+itemRank+","+rarity+","+itemValue+ ")");
 
-
     }
     /*
     <ITEM NAME>
@@ -388,7 +390,7 @@ public class Main {
         Type
         MonsterID
          */
-    private static void generateHuntingMission(int id,BufferedWriter bw,int missionHolderID,ArrayList<String> desc)
+    private static void generateHuntingMission(int id, BufferedWriter bw, int missionHolderID, ArrayList<String> desc, String team)
     {
         Random rdm = new Random();
         int monsterID = rdm.nextInt(missionHolderID);
@@ -399,8 +401,14 @@ public class Main {
         String missionType;
 
         try{
-            bw.write("insert into Hunting_missions values("+id+",NULL,NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
-            bw.newLine();
+            if(team != null) {
+                bw.write("insert into Hunting_missions values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
+                bw.newLine();
+            }
+            else{
+                bw.write("insert into Hunting_missions values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
+                bw.newLine();
+            }
             generateHuntingDifficulty(bw,goldReward,expReward);
             while(monsterID == 0)
                 monsterID = reroll(id+1);
@@ -460,7 +468,7 @@ public class Main {
         CompleteTime
         ForfeitTime
          */
-    private static void generateItemMission(int id,BufferedWriter bw,ArrayList<String> desc)
+    private static void generateItemMission(int id, BufferedWriter bw, ArrayList<String> desc, String team)
     {
         Random rdm = new Random();
         int itemID = rdm.nextInt(id);
@@ -471,8 +479,15 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
 
         try{
-            bw.write("insert into Item_Foraging_Mission values("+id+",NULL,NULL,"+missionHolderID+","+expReward+","+goldReward+",'"+description+"','"+deadline+"',NULL,NULL,NULL,NULL);");
-            bw.newLine();
+            if(team!=null) {
+                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
+                bw.newLine();
+            }
+            else{
+                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
+                bw.newLine();
+            }
+
             generateItemDifficulty(bw,goldReward,expReward);
             while(itemID == 0)
                 itemID = reroll(id+1);
