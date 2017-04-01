@@ -41,13 +41,15 @@ public class Main {
             {
                 generateItem(i,i,bw,descriptions,colour,noun);
                 generateMonster(i,bw,colour,adjective,animal);
-                generateHuntingMission(i,bw,i,descriptions, null);
-                generateItemMission(i,bw,descriptions, null);
                 if(i%2 ==0)
                 {
                     String team = generateTeam(i,bw,adjective,noun);
                     generateHuntingMission(i,bw,i,descriptions,team);
                     generateItemMission(i,bw,descriptions,team);
+                }
+                else{
+                    generateHuntingMission(i,bw,i,descriptions, null);
+                    generateItemMission(i,bw,descriptions, null);
                 }
             }
            bw.close();
