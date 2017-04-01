@@ -403,7 +403,7 @@ public class Main {
         String missionType;
 
         try{
-            if(team != null) {
+            if(team == null) {
                 bw.write("insert into Hunting_missions values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
                 bw.newLine();
             }
@@ -481,7 +481,7 @@ public class Main {
         String description = desc.get(rdm.nextInt(desc.size()));
 
         try{
-            if(team!=null) {
+            if(team == null) {
                 bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,NULL,NULL,NULL);");
                 bw.newLine();
             }
