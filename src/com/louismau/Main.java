@@ -486,7 +486,7 @@ public class Main {
                 bw.newLine();
             }
             else{
-                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20'',NULL,NULL);");
+                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20',NULL,NULL);");
                 bw.newLine();
             }
 

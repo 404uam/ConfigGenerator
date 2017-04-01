@@ -95,7 +95,7 @@ update Hunter set teamName = 'Murk Clutch' where hunterID =2;
 insert into Hunting_missions values(2,NULL,'Murk Clutch',2,371803,62814,'Vestibulum nec egestas lorem. Phasellus euismod neque ut vehicula lobortis. Nulla posuere euismod dignissim. Donec vel eros pellentesque, fermentum arcu id, mollis dui. Sed libero.','2017-08-11',NULL,'2017-04-20',NULL,NULL);
 insert into Hunting_missions_difficulty values('S',371803,62814);
 insert into MMission_has_Monster values(2,1);
-insert into Item_Foraging_Mission values(2,NULL,'Murk Clutch',0,659026,150097,'Integer turpis arcu, ultricies pulvinar metus at, ultricies commodo purus. Duis in enim semper tortor sagittis egestas. Phasellus rhoncus vel nisl sit amet gravida. Donec.','2017-08-11',NULL,'2017-04-20'',NULL,NULL);
+insert into Item_Foraging_Mission values(2,NULL,'Murk Clutch',0,659026,150097,'Integer turpis arcu, ultricies pulvinar metus at, ultricies commodo purus. Duis in enim semper tortor sagittis egestas. Phasellus rhoncus vel nisl sit amet gravida. Donec.','2017-08-11',NULL,'2017-04-20',NULL,NULL);
 insert into Item_Mission_Difficulty values('A',659026,150097);
 insert into IMission_has_Item values(2,2);
 insert into Item values(3,3,NULL,'PersimmonStope','B',30,8895);
