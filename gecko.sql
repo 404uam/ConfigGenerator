@@ -50,7 +50,7 @@ CREATE TABLE Team_Captain(
   hunterID INTEGER,
   teamName VARCHAR(26) NOT NULL,
   PRIMARY KEY(hunterID),
-  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
+  FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID) ,
   FOREIGN KEY(teamName) REFERENCES Team(teamName));
 
   CREATE TABLE MissionHolder_reputation(
@@ -76,7 +76,7 @@ CREATE TABLE Team_Captain(
             rarity INTEGER, 
             itemValue INTEGER,
             PRIMARY KEY(itemID),
-            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID));
+            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID) ON DELETE SET NULL );
 			            
 CREATE TABLE Item_Name(
             itemName VARCHAR(26), 
@@ -98,8 +98,8 @@ CREATE TABLE Hunting_missions(
             completionTime CHAR(20), 
             forfeitTime CHAR(20),
 			PRIMARY KEY (huntingMissionID),
-			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-      FOREIGN KEY (teamName) REFERENCES Team(teamName),
+			FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID) ON DELETE SET NULL ,
+      FOREIGN KEY (teamName) REFERENCES Team(teamName) ON DELETE SET NULL ,
       FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Hunting_missions_difficulty(
@@ -112,7 +112,7 @@ CREATE TABLE MMission_has_Monster(
             huntingMissionId INTEGER, 
             monsterid INTEGER,
 			PRIMARY KEY(huntingMissionId, monsterID),
-			FOREIGN KEY(huntingMissionId) REFERENCES Hunting_missions(huntingMissionId),
+			FOREIGN KEY(huntingMissionId) REFERENCES Hunting_missions(huntingMissionId)ON DELETE SET NULL ,
 			FOREIGN KEY(monsterID) REFERENCES Monster(monsterID));
 
 
@@ -130,8 +130,8 @@ CREATE TABLE Item_Foraging_Mission(
             completeTime CHAR(20), 
             forefeitTime CHAR(20),
 			PRIMARY KEY (itemMissionId),
-            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID),
-            FOREIGN KEY (teamName) REFERENCES Team(teamName),
+            FOREIGN KEY(hunterID) REFERENCES Hunter(hunterID) ON DELETE SET NULL ,
+            FOREIGN KEY (teamName) REFERENCES Team(teamName) ON DELETE SET NULL ,
             FOREIGN KEY(missionHolderID) REFERENCES MissionHolder(missionHolderID));
 
 CREATE TABLE Item_Mission_Difficulty(
@@ -141,10 +141,10 @@ CREATE TABLE Item_Mission_Difficulty(
             PRIMARY KEY (expReward,goldReward));
 
 CREATE TABLE IMission_has_Item(
-            itemMissionId INTEGER, 
+            itemMissionId INTEGER,
             ItemId INTEGER,
 			PRIMARY KEY(itemMissionId,ItemId),
-			FOREIGN KEY(itemMissionId) REFERENCES Item_Foraging_Mission(itemMissionId),
+			FOREIGN KEY(itemMissionId) REFERENCES Item_Foraging_Mission(itemMissionId) ON DELETE SET NULL,
 			FOREIGN KEY(ItemId) REFERENCES Item(itemId));
 
 
