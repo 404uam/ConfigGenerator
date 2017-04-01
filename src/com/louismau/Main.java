@@ -404,11 +404,11 @@ public class Main {
 
         try{
             if(team == null) {
-                bw.write("insert into Hunting_missions values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,"2017-04-20",NULL,NULL);");
+                bw.write("insert into Hunting_missions values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20',NULL,NULL);");
                 bw.newLine();
             }
             else{
-                bw.write("insert into Hunting_missions values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,"2017-04-20",NULL,NULL);");
+                bw.write("insert into Hunting_missions values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20',NULL,NULL);");
                 bw.newLine();
             }
             generateHuntingDifficulty(bw,goldReward,expReward);
@@ -482,11 +482,11 @@ public class Main {
 
         try{
             if(team == null) {
-                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,"2017-04-20",NULL,NULL);");
+                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,NULL," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20',NULL,NULL);");
                 bw.newLine();
             }
             else{
-                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,"2017-04-20",NULL,NULL);");
+                bw.write("insert into Item_Foraging_Mission values(" + id + ",NULL,'"+team+"'," + missionHolderID + "," + expReward + "," + goldReward + ",'" + description + "','" + deadline + "',NULL,'2017-04-20'',NULL,NULL);");
                 bw.newLine();
             }
 
